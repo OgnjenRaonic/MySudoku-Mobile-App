@@ -306,6 +306,7 @@ const SudokuGrid: React.FC = () => {
     }
   };
 
+  //Otkriva ili sakriva hint dugmice,a ako se ne pritisne za sakrivanje nakon 5 sec ih sakriva
   const toggleHintPosition = () => {
     const opening = !hintButtonsVisible; 
     setHintButtonsVisible(opening);
