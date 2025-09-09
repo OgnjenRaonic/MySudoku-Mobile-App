@@ -49,7 +49,7 @@ const SudokuGrid: React.FC = () => {
   const [direction, setDirection] = useState(true);
   const [hintButtonsVisible, setHintButtonsVisible] = useState(false);
   const slideAnim = useRef(new Animated.Value(1)).current;
-  const { push: pushBoard, undo: undoBoard } = useUndo(startBoard.current);
+  const { push: pushBoard, undo: undoBoard } = useUndo();
   const { handleRandomHint, handlePreciseHint, hinting } = useHints(solvedBoard);
 
   const translateRandHintX = slideAnim.interpolate({
@@ -79,6 +79,7 @@ const SudokuGrid: React.FC = () => {
       solvedBoard.current = stringToBoard(solvedBoardStr);
       countNumbers();
       allNumberButtonsUnlocked();
+      pushBoard(generatedBoard)
 
       setBoard(generatedBoard);
     } catch (e) {
@@ -86,6 +87,7 @@ const SudokuGrid: React.FC = () => {
       Alert.alert('Greška pri generisanju table.');
     }
   };
+
 
   const allNumberButtonsUnlocked =() =>{
     setLockedNumberButtons(prev => {
